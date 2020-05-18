@@ -2,6 +2,19 @@
     <string name="app_name">Intern</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">YourPost</string>
+    <string name="title_notifications">Profile</string>
+
+
+<!--    <string-array name="spinner_breed">-->
+<!--        <item> Select Breed </item>-->
+<!--        <item>Mercury</item>-->
+<!--        <item>Venus</item>-->
+<!--        <item>Earth</item>-->
+<!--        <item>Mars</item>-->
+<!--        <item>Jupiter</item>-->
+<!--        <item>Saturn</item>-->
+<!--        <item>Uranus</item>-->
+<!--        <item>Neptune</item>-->
+<!--    </string-array>-->
 </resources>
