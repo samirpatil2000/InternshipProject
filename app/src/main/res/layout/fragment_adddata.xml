@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <Spinner android:layout_width="match_parent"
-             android:layout_marginTop="140dp"
-             android:layout_height="wrap_content"
-             android:id="@+id/spinner">
-    </Spinner>
-
-    <Button android:layout_width="match_parent"
-            android:id="@+id/btnsearch"
-            android:text="Search"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content">
-    </Button>
 
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="80dp"
+        android:text="Logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

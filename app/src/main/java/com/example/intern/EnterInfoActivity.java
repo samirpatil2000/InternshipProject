@@ -234,7 +234,6 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
         }
 
         addressTv.setText(address);
-
     }
 
     private void uploadToFirebase(String dogName, String ownerName, String age, String dogsBreed, String sex,String locationString) {
@@ -247,6 +246,7 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
         String email = firebaseUser.getEmail();
 
         Map<String,Object> doc = new HashMap<>();
+
         doc.put("id",userId);
         doc.put("dogsName",dogName);
         doc.put("ownerName",ownerName);
@@ -265,7 +265,7 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
                     public void onComplete(@NonNull Task<Void> task) {
                         showMessage("Data Is Successfully Added");
                         pd.dismiss();
-                        Intent intent = new Intent(EnterInfoActivity.this,MainActivity.class);
+                        Intent intent = new Intent(EnterInfoActivity.this,AddImageActivity.class);
                         startActivity(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -276,8 +276,6 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
                 showMessage(e.getMessage().toString());
             }
         });
-
-
 
 
 //        db.collection("UserInfo").document(id).set(doc)
