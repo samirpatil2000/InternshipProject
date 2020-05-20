@@ -11,13 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -29,10 +27,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.util.HashMap;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
@@ -67,7 +64,7 @@ public class AddImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_image);
 
-        circleImageView=findViewById(R.id.imageAddViewCircular);
+        circleImageView=findViewById(R.id.imageCircularEdit);
         nextBtn=findViewById(R.id.addImageBtn);
         addImage=findViewById(R.id.addImage);
 
@@ -190,11 +187,6 @@ private void addImage(Uri imageUri) {
                             pd.dismiss();
                             Toast.makeText(AddImageActivity.this,"Failed",Toast.LENGTH_SHORT).show();
                         }
-
-                    //if the upload is successful
-                    //hiding the progress dialog
-                    //and displaying a success toast
-                //    dismissDialog();
                     String profilePicUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
                 }
             })
@@ -203,11 +195,6 @@ private void addImage(Uri imageUri) {
                 public void onFailure(@NonNull Exception exception) {
                     pd.dismiss();
                     showMessage(exception.getMessage());
-
-                    //if the upload is not successful
-                    //hiding the progress dialog
-                  //  dismissDialog();
-                    //and displaying error message
                     Toast.makeText(AddImageActivity.this, exception.getCause().getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 }
             })

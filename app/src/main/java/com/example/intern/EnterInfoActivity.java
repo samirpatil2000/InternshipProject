@@ -75,20 +75,20 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_info);
 
-        dogNameEt=findViewById(R.id.dogNameInfo);
-        ownerNameEt=findViewById(R.id.ownerNameInfo);
-        ageEt=findViewById(R.id.ageEtInfo);
+        dogNameEt=findViewById(R.id.dogNameEdit);
+        ownerNameEt=findViewById(R.id.ownerNameEdit);
+        ageEt=findViewById(R.id.ageEtEdit);
 
-        setLocation=findViewById(R.id.setLocationInfo);
-        addressTv=findViewById(R.id.locationAddresssInfoTv);
+        setLocation=findViewById(R.id.setLocationEdit);
+        addressTv=findViewById(R.id.locationAddresssEditTv);
 
         saveBtn=findViewById(R.id.saveBtn);
 
          breed = new String[]{"Select Breed : ","captain marvel", "thor", "tokyo", "cisco", "catlin","Nebula","flash","Iron Man","Rio","Berlin","Nairobi"};
          gender=new String[]{"Select Gender : ","Male","Female"};
 
-        Spinner breedSpinner = findViewById(R.id.spinner_breedInfo);
-        final Spinner genderSpinner = findViewById(R.id.spinner_gender);
+        Spinner breedSpinner = findViewById(R.id.spinner_breedEdit);
+        final Spinner genderSpinner = findViewById(R.id.spinner_genderEdit);
 
         pd = new ProgressDialog(this);
         pd.dismiss();
@@ -273,7 +273,7 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
             public void onFailure(@NonNull Exception e) {
 
                 pd.dismiss();
-                showMessage(e.getMessage().toString());
+                showMessage(e.getMessage());
             }
         });
 

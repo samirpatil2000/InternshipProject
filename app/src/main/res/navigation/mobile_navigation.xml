@@ -19,7 +19,7 @@
 
     <fragment
             android:id="@+id/navigation_notifications"
-            android:name="com.example.intern.ui.addData.addDataFragment"
+            android:name="com.example.intern.ui.addData.ProfileFragment"
             android:label="@string/title_notifications"
-            tools:layout="@layout/fragment_adddata"/>
+            tools:layout="@layout/fragment_profile"/>
 </navigation>

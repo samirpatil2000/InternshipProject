@@ -35,8 +35,8 @@
             android:layout_height="53dp"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/spinner_breedInfo" app:layout_constraintHorizontal_bias="0.483"
-            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/ownerNameInfo">
+            android:id="@+id/spinner_breedEdit" app:layout_constraintHorizontal_bias="0.483"
+            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/ownerNameEdit">
     </Spinner>
     <EditText
             android:layout_width="110dp"
@@ -44,8 +44,8 @@
             android:inputType="number"
             android:ems="10"
             android:textColor="@android:color/white"
-            android:id="@+id/ageEtInfo" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_breedInfo"
+            android:id="@+id/ageEtEdit" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_breedEdit"
             app:layout_constraintStart_toStartOf="@+id/appCompatImageView" android:layout_marginStart="44dp"
             android:hint="Age"/>
     <Spinner
@@ -53,9 +53,9 @@
             android:layout_height="53dp"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/spinner_gender" android:layout_marginStart="32dp"
-            app:layout_constraintStart_toEndOf="@+id/ageEtInfo" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_breedInfo"/>
+            android:id="@+id/spinner_genderEdit" android:layout_marginStart="32dp"
+            app:layout_constraintStart_toEndOf="@+id/ageEtEdit" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_breedEdit"/>
     <EditText
             android:layout_width="320dp"
             android:layout_height="53dp"
@@ -63,7 +63,7 @@
             android:textColorHint="@android:color/white"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/dogNameInfo"
+            android:id="@+id/dogNameEdit"
             android:hint="Dog Name" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="19dp" app:layout_constraintTop_toBottomOf="@+id/textView"/>
@@ -74,24 +74,24 @@
             android:textColorHint="@android:color/white"
             android:textColor="@android:color/white"
             android:ems="10"
-            android:id="@+id/ownerNameInfo"
+            android:id="@+id/ownerNameEdit"
             android:hint="Owner Name" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="19dp" app:layout_constraintTop_toBottomOf="@+id/dogNameInfo"/>
+            android:layout_marginTop="19dp" app:layout_constraintTop_toBottomOf="@+id/dogNameEdit"/>
     <ImageButton
             android:layout_width="58dp"
             android:layout_height="53dp" app:srcCompat="@drawable/ic_location"
             android:background="#A3071615"
-            android:id="@+id/setLocationInfo" android:layout_marginTop="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/ageEtInfo" app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/setLocationEdit" android:layout_marginTop="18dp"
+            app:layout_constraintTop_toBottomOf="@+id/ageEtEdit" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="44dp"/>
     <TextView
             android:text="Address"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:id="@+id/locationAddresssInfoTv" android:layout_marginTop="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/ageEtInfo" android:layout_marginStart="24dp"
-            app:layout_constraintStart_toEndOf="@+id/setLocationInfo"/>
+            android:id="@+id/locationAddresssEditTv" android:layout_marginTop="18dp"
+            app:layout_constraintTop_toBottomOf="@+id/ageEtEdit" android:layout_marginStart="24dp"
+            app:layout_constraintStart_toEndOf="@+id/setLocationEdit"/>
 
     <Button
         android:id="@+id/saveBtn"
@@ -102,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationAddresssInfoTv" />
+        app:layout_constraintTop_toBottomOf="@+id/locationAddresssEditTv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

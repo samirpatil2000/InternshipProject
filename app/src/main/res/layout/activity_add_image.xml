@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageAddViewCircular"
+        android:id="@+id/imageCircularEdit"
         android:layout_width="167dp"
         android:layout_height="165dp"
         android:layout_centerHorizontal="true"
@@ -38,7 +38,7 @@
         android:layout_marginEnd="172dp"
         android:text="Next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageAddViewCircular" />
+        app:layout_constraintTop_toBottomOf="@+id/imageCircularEdit" />
 
     <Button
         android:id="@+id/addImage"
@@ -48,7 +48,7 @@
         android:layout_marginBottom="4dp"
         android:text="Add Image"
         app:layout_constraintBottom_toTopOf="@+id/addImageBtn"
-        app:layout_constraintTop_toBottomOf="@+id/imageAddViewCircular"
+        app:layout_constraintTop_toBottomOf="@+id/imageCircularEdit"
         tools:layout_editor_absoluteX="151dp" />
 
     <TextView
