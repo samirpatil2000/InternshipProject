@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.*;
 import androidx.annotation.NonNull;
@@ -157,6 +156,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
 
+
+
+        int spinnerPositionBreed = adapterBreed.getPosition(dogBreed);
+        breedSpinner.setSelection(spinnerPositionBreed);
         breedSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -171,6 +174,8 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        int spinnerPositionSex = adapterGender.getPosition(sex);
+        genderSpinner.setSelection(spinnerPositionSex);
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -218,31 +223,28 @@ public class EditProfileActivity extends AppCompatActivity {
                     updateImageOnly(imageUri);
                  //   updateImageOnly(dogNameUpdated,ownerUpdated,ageUpdated,breedUpdated,genderUpdated,addressUpdated,locationStringUpdated,imageUri);
                 }
-                else if (!TextUtils.isEmpty(dogNameUpdated)){
-                    updateDogName(dogNameUpdated);
-
-                }
-                else if(!TextUtils.isEmpty(ownerUpdated)){
+                else if (ownerName != ownerUpdated ){
                     updateOwnerName(ownerUpdated);
-
                 }
-                else if(!TextUtils.isEmpty(ageUpdated)){
+                else if(dogName != dogNameUpdated){
+                    updateDogName(dogNameUpdated);
+                }
+                else if( age != ageUpdated){
                     updateAge(ageUpdated);
-
                 }
-                else if(!TextUtils.isEmpty(breedUpdated)){
+                else if(dogBreed != breedUpdated){
                     updateBreed(breedUpdated);
 
                 }
-                else if(!TextUtils.isEmpty(genderUpdated)){
+                else if(sex != genderUpdated){
                     updateGender(genderUpdated);
 
                 }
-                else if(!TextUtils.isEmpty(locationStringUpdated)){
+                else if(locationString != locationStringUpdated){
                     updateLocationStringU(locationStringUpdated);
 
                 }
-                else if(!TextUtils.isEmpty(addressUpdated)){
+                else if(address != addressUpdated){
                     updateaddress(addressUpdated);
 
                 }
@@ -330,7 +332,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void updateBreed(String breedUpdated) {
-        pd.setTitle("Updating ownerName");
+        pd.setTitle("Updating Breed");
         pd.show();
         HashMap<String,Object> result = new HashMap<>();
         result.put("dodsBreed",breedUpdated);
@@ -353,7 +355,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void updateAge(String ageUpdated) {
-        pd.setTitle("Updating ownerName");
+        pd.setTitle("Updating age");
         pd.show();
         HashMap<String,Object> result = new HashMap<>();
         result.put("age",ageUpdated);

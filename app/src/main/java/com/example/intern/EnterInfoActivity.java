@@ -72,7 +72,7 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
          breed = new String[]{"Select Breed : ","captain marvel", "thor", "tokyo", "cisco", "catlin","Nebula","flash","Iron Man","Rio","Berlin","Nairobi"};
          gender=new String[]{"Select Gender : ","Male","Female"};
 
-        Spinner breedSpinner = findViewById(R.id.spinner_breedEdit);
+        final Spinner breedSpinner = findViewById(R.id.spinner_breedEdit);
         final Spinner genderSpinner = findViewById(R.id.spinner_genderEdit);
 
         pd = new ProgressDialog(this);
@@ -90,6 +90,7 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Selected User: "+breed[position] ,Toast.LENGTH_SHORT).show();
                 dogsBreed=breed[position];
+                breedSpinner.getSelectedItem().toString();
             }
 
             @Override
