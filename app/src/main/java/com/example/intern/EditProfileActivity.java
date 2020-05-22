@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.*;
 import androidx.annotation.NonNull;
@@ -213,22 +214,219 @@ public class EditProfileActivity extends AppCompatActivity {
                 String breedUpdated = breedTv.getText().toString();
                 String genderUpdated = sexTv.getText().toString();
 
+                if (imageUri!=null){
+                    updateImageOnly(imageUri);
+                 //   updateImageOnly(dogNameUpdated,ownerUpdated,ageUpdated,breedUpdated,genderUpdated,addressUpdated,locationStringUpdated,imageUri);
+                }
+                else if (!TextUtils.isEmpty(dogNameUpdated)){
+                    updateDogName(dogNameUpdated);
 
+                }
+                else if(!TextUtils.isEmpty(ownerUpdated)){
+                    updateOwnerName(ownerUpdated);
 
-                updateInfo(dogNameUpdated,ownerUpdated,ageUpdated,breedUpdated,genderUpdated,addressUpdated,locationStringUpdated,imageUri);
+                }
+                else if(!TextUtils.isEmpty(ageUpdated)){
+                    updateAge(ageUpdated);
+
+                }
+                else if(!TextUtils.isEmpty(breedUpdated)){
+                    updateBreed(breedUpdated);
+
+                }
+                else if(!TextUtils.isEmpty(genderUpdated)){
+                    updateGender(genderUpdated);
+
+                }
+                else if(!TextUtils.isEmpty(locationStringUpdated)){
+                    updateLocationStringU(locationStringUpdated);
+
+                }
+                else if(!TextUtils.isEmpty(addressUpdated)){
+                    updateaddress(addressUpdated);
+
+                }
+                else{
+                    showMessage("Your Not selected any image");
+                }
+
 
 
             }
         });
     }
 
-    private void updateInfo(final String dogNameUpdated, final String ownerUpdated, final String ageUpdated,
-                            final String breedUpdated, final String genderUpdated,
-                            final String addressUpdated, final String locationStringUpdated, Uri imageUri) {
+    private void updateaddress(String addressUpdated) {
+
+        pd.setTitle("Updating ownerName");
+        pd.show();
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("address",addressUpdated);
+
+        databaseReference.child(current_user.getUid()).updateChildren(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        showMessage("Updated...");
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                showMessage(e.getMessage());
+            }
+        });
 
 
+    }
 
+    private void updateLocationStringU(String locationStringUpdated) {
+        pd.setTitle("Updating ownerName");
+        pd.show();
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("sex",locationStringUpdated);
 
+        databaseReference.child(current_user.getUid()).updateChildren(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        showMessage("Updated...");
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                showMessage(e.getMessage());
+            }
+        });
+        
+    }
+
+    private void updateGender(String genderUpdated) {
+        pd.setTitle("Updating ownerName");
+        pd.show();
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("sex",genderUpdated);
+
+        databaseReference.child(current_user.getUid()).updateChildren(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        showMessage("Updated...");
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                showMessage(e.getMessage());
+            }
+        });
+    }
+
+    private void updateBreed(String breedUpdated) {
+        pd.setTitle("Updating ownerName");
+        pd.show();
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("dodsBreed",breedUpdated);
+
+        databaseReference.child(current_user.getUid()).updateChildren(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        showMessage("Updated...");
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                showMessage(e.getMessage());
+            }
+        });
+    }
+
+    private void updateAge(String ageUpdated) {
+        pd.setTitle("Updating ownerName");
+        pd.show();
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("age",ageUpdated);
+
+        databaseReference.child(current_user.getUid()).updateChildren(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        showMessage("Updated...");
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                showMessage(e.getMessage());
+            }
+        });
+    }
+
+    private void updateOwnerName(String ownerUpdated) {
+        pd.setTitle("Updating ownerName");
+        pd.show();
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("ownerName",ownerUpdated);
+
+        databaseReference.child(current_user.getUid()).updateChildren(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        showMessage("Updated...");
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                showMessage(e.getMessage());
+            }
+        });
+    }
+
+    private void updateDogName(String dogNameUpdated) {
+        pd.setTitle("Updating Name");
+        pd.show();
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("dogsName",dogNameUpdated);
+
+        databaseReference.child(current_user.getUid()).updateChildren(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        showMessage("Updated...");
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                showMessage(e.getMessage());
+            }
+        });
+    }
+
+//
+//    private void updateImageOnly(final String dogNameUpdated, final String ownerUpdated, final String ageUpdated,
+//                                 final String breedUpdated, final String genderUpdated,
+//                                 final String addressUpdated, final String locationStringUpdated, Uri imageUri)
+
+    private void updateImageOnly(Uri imageUri) {
         pd.setTitle("Adding Your Image");
         pd.show();
         String path=storagePath+"ProfileImages"+"_"+current_user.getUid();
