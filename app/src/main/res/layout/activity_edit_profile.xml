@@ -58,7 +58,7 @@
             android:id="@+id/ageEtEdit"
             android:hint="Age"
             app:layout_constraintStart_toEndOf="@+id/imageCircularEdit" android:layout_marginStart="16dp"
-            android:layout_marginTop="17dp" app:layout_constraintTop_toBottomOf="@+id/ownerNameEdit"/>
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/ownerNameEdit"/>
     <Spinner
             android:layout_width="185dp"
             android:layout_height="53dp"

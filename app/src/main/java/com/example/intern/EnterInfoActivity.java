@@ -1,32 +1,21 @@
 package com.example.intern;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.location.*;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,11 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class EnterInfoActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -145,48 +130,63 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
         setLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pd.setTitle("Adding Your location");
-                pd.show();
-                locationListener=new LocationListener() {
-                    @Override
-                    public void onLocationChanged(Location location) {
-                        pd.dismiss();
-                        updateLocationInfo(location);
-                        //addressTv.setText(location.getLongitude()+","+location.getLatitude());
-                        locationString = location.getLongitude()+","+location.getLatitude();
-                    }
 
-                    @Override
-                    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-                    }
-
-                    @Override
-                    public void onProviderEnabled(String provider) {
-
-                    }
-
-                    @Override
-                    public void onProviderDisabled(String provider) {
-
-                    }
-                };
-                if (ContextCompat.checkSelfPermission(EnterInfoActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(EnterInfoActivity.this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},1);
-
+                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    OnGPS();
+                } else {
+                    getLocation();
                 }
-                else
-                {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
-                    Location lastKnowLocation=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    if(lastKnowLocation!=null){
-                        updateLocationInfo(lastKnowLocation);
-                    }
-                }
-
             }
         });
 
+
+
+    }
+
+
+
+
+
+    private void getLocation() {
+
+        pd.setTitle("Adding Your location");
+        pd.show();
+        locationListener=new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                pd.dismiss();
+                updateLocationInfo(location);
+                //addressTv.setText(location.getLongitude()+","+location.getLatitude());
+                locationString = location.getLongitude()+","+location.getLatitude();
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+        if (ContextCompat.checkSelfPermission(EnterInfoActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(EnterInfoActivity.this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},1);
+
+        }
+        else
+        {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+            Location lastKnowLocation=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if(lastKnowLocation!=null){
+                updateLocationInfo(lastKnowLocation);
+            }
+        }
     }
 
     private void updateLocationInfo( final Location location) {
@@ -258,7 +258,7 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
         doc.put("address",address);
         doc.put("location",locationString);
 
-        reference=FirebaseDatabase.getInstance().getReference("UserInfo");
+        reference = FirebaseDatabase.getInstance().getReference("UserInfo");
         reference.child(userId).setValue(doc).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -276,7 +276,6 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
                 showMessage(e.getMessage());
             }
         });
-
 
 //        db.collection("UserInfo").document(id).set(doc)
 //                .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -307,7 +306,6 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED) {
-
             startListening();
 
         }
@@ -324,6 +322,25 @@ public class EnterInfoActivity extends AppCompatActivity implements AdapterView.
     private void showMessage(String s) {
         Toast.makeText(this,s,Toast.LENGTH_LONG).show();
     }
+
+
+    private void OnGPS() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Enable GPS").setCancelable(false).setPositiveButton("Yes", new  DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 }
 
 

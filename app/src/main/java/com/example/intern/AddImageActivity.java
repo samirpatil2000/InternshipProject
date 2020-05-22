@@ -149,9 +149,10 @@ public class AddImageActivity extends AppCompatActivity {
 private void addImage(Uri imageUri) {
         pd.setTitle("Adding Your Image");
         pd.show();
+        String path=storagePath+"ProfileImages"+"_"+current_user.getUid();
     FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
     StorageReference storageReferenceProfilePic = firebaseStorage.getReference();
-    StorageReference imageRef = storageReferenceProfilePic.child("dp");
+    StorageReference imageRef = storageReference.child(path);
 
     imageRef.putFile(imageUri)
             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -172,8 +173,7 @@ private void addImage(Uri imageUri) {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             pd.dismiss();
-                                            Toast.makeText(AddImageActivity.this,"Image Updated ...",Toast.LENGTH_SHORT).show();
-                                            ;
+                                            Toast.makeText(AddImageActivity.this," Image Updated ...",Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override

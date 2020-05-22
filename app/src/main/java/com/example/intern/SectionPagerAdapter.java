@@ -16,8 +16,6 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
 
         super(fm);
 
-
-
     }
 
     @NonNull
